@@ -3,14 +3,14 @@ from spotipy.oauth2 import SpotifyOAuth
 from spotipy.oauth2 import SpotifyClientCredentials
 CL_ID = "Enter the client id here"
 CL_SECRET = "Enter the client secret here"
-
+'''
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CL_ID,
                                                client_secret=CL_SECRET,
                                                redirect_uri="http://localhost:8080",
                                                scope="playlist-modify-private"))
 
 username = sp.current_user()["id"]
-
+'''
 def getSong():
     count = -1
     sName = input("\nEnter the name of the song for the playlist\n")
@@ -115,21 +115,36 @@ def getRecommended_higher(uri):
         return next_song_uri
 #``````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 def getInfo(fname):
+
+    # Python program to read
+    # json file
+
+    import json
+
+    # Opening JSON file
+    f = open(fname)
+    # returns JSON object as
+    # a dictionary
+    data = json.load(f)
+    f.close()
+
     # This function needs to read some kind of input file and gather the following data
-    # 1. The name of the playlist
+    # 1. The name of the songname
     # 2. Whether or not the tempo is increasing or decreasing
     #       Increasing -> True
     #       Decreasing -> False
     # 3. Length of playlist (a.k.a the number of songs)
     #
     # The file should have this format for now
-    data = ["My Generated Playlist", False, 15] #THIS IS TEMPORARY USER INPUT, THIS FUNCTION SHOULD PROCESS THE FILE TO GET THE INFO
+     #THIS IS TEMPORARY USER INPUT, THIS FUNCTION SHOULD PROCESS THE FILE TO GET THE INFO
     return data
 #`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````
 
 #------------------------------------------------------------------------------------------
 # The "Main" function of the program 
-playlist_info = getInfo("filename") # Read in a file to process the form from the frontend
+playlist_info = getInfo("playlist-builder/src/test.json") # Read in a file to process the form from the frontend
+print(playlist_info)
+'''
 init_uri = getSong()                # Get the uri of the song the user searches for
 uri_list = [init_uri]               # Create the initial list to populate
 
@@ -142,3 +157,4 @@ playlist = sp.user_playlist_create(username, playlist_info[0], public=False, col
 sp.user_playlist_add_tracks(username, playlist['uri'], uri_list, position=None) # Add the songs from the URI list to the playlist
 
 # Et Voila!
+'''
