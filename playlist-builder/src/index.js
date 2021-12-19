@@ -4,17 +4,34 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import App from './App';
 import Page2 from './page2';
+import Results from './results';
 import reportWebVitals from './reportWebVitals';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const rootElement = document.getElementById("root")
 
+const theme = createTheme({
+   palette: {
+      primary: {
+         main: '#1db954',
+      },
+
+      secondary: {
+         main: '#1db954',
+
+      },
+   },
+});
+
 ReactDOM.render(
-  <BrowserRouter>
-   <Routes>
-      <Route exact path ="/" element={<App/>}/>
-      <Route path="/page2" element={<Page2/>} />
-   </Routes>
-  </BrowserRouter>,
+  <ThemeProvider theme={theme}>
+   <BrowserRouter>
+      <Routes>
+         <Route exact path ="/" element={<App/>}/>
+         <Route path="/results" element={<Results/>} />
+      </Routes>
+   </BrowserRouter>
+  </ThemeProvider>,
   rootElement
 );
 
