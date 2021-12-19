@@ -14,11 +14,11 @@ body {
     border-bottom: 1px solid rgb(79, 98, 148);
   }
   
-  
+/*   
   button[type="button"] {
     background: black;
     border: 1px solid white;
-  }
+  } */
 
   
   input {
@@ -51,34 +51,33 @@ body {
     margin-bottom: 13px;
     margin-top: 20px;
     color: white;
-    font-size: 14px;
-    font-weight: 200;
+    font-size: 18px;
+    font-weight: 250;
   }
   
   button,
+  button[type="submit"],
+  input[type="button"],
   input[type="submit"] {
     background: #1db954;
     color: white;
     text-transform: uppercase;
     border: none;
     margin-top: 40px;
+    width: 65%;
     padding: 20px;
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 10px;
   }
   
-  button {
-    display: block;
-    appearance: none;
-    border-radius: 4px;
-    width: 100%;
-  }
-  
+  button[type="submit"]:hover,
+  input[type="button"]:hover,
   input[type="submit"]:hover {
     background: #1dc95b;
   }
   
+  button[type="submit"]:active,
   input[type="button"]:active,
   input[type="submit"]:active {
     transition: 0.3s all;
@@ -95,6 +94,7 @@ body {
     transition: 0.3s all;
   }
   
+  button[type="submit"],
   input[type="button"],
   input[type="submit"] {
     -webkit-appearance: none;
@@ -112,7 +112,6 @@ body {
   .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
   }
   
   .counter {
@@ -131,16 +130,32 @@ body {
      max-width: 450px;
      margin: 0 auto;
      align-content: center;
+     padding-top: 50px;
   }
   
   .textBox {
-     margin-left: 145px;
+     line-height: 2;
+     text-align: center;
+     display: block;
   }
 
-  .Decrease {
-   padding-left: 163px;
+  .tempoButtons {
+     font-weight: 100;
   }
 
-  .Increase {
-   padding-left: 165px;
+  section {
+     line-height: 2;
+     text-align: center;
+     display: block;
+  }
+
+  .title {
+     color: white;
+     font-weight: 500;
+     padding-top: 4px
+  }
+
+  .Image {
+     width: 35px;
+     padding-right: 8px
   }

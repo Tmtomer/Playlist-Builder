@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import App from './App';
 import Page2 from './page2';
+import Results from './results';
 import reportWebVitals from './reportWebVitals';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
@@ -27,7 +28,7 @@ ReactDOM.render(
    <BrowserRouter>
       <Routes>
          <Route exact path ="/" element={<App/>}/>
-         <Route path="/page2" element={<Page2/>} />
+         <Route path="/results" element={<Results/>} />
       </Routes>
    </BrowserRouter>
   </ThemeProvider>,

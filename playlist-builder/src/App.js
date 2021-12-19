@@ -1,9 +1,15 @@
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { Input, RadioGroup, Radio, FormControlLabel, Slider } from "@material-ui/core";
+import { Input, RadioGroup, Radio, FormControlLabel, Slider, Toolbar} from "@material-ui/core";
+import AppBar from '@material-ui/core/AppBar';
+import {Link} from 'react-router-dom';
+import Box from '@mui/material/Box';
+import Image from 'material-ui-image';
 
 import axios from "axios";
 import "./styles.css";
+import Typography from "@material-ui/core/Typography";
+
 
 
 const marks = [
@@ -54,82 +60,105 @@ const App = () => {
  };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}
-      className="form">
-      <label>Song Name</label>
-      <Controller
-        render={({ field }) => <Input
-        className='textBox'
-        {...field} />}
-        name="songName"
-        control={control}
-        defaultValue=""
-        className="materialUIInput"
-      />
-      <label>Artist Name</label>
-      <Controller
-        render={({ field }) => <Input 
-        className='textBox'
-        {...field} />}
-        name="artistName"
-        control={control}
-        defaultValue=""
-        className="materialUIInput"
-      />
-      <label>Playlist Name</label>
-      <Controller
-        render={({ field }) => <Input 
-        className='textBox'
-        {...field} />}
-        name="playlistName"
-        control={control}
-        defaultValue=""
-        className="materialUIInput"
-      />
-      <label>Tempo</label>
-      <Controller
-        name="tempo"
-        control={control}
-        render={({ field }) => (
-            <RadioGroup aria-label="tempo" {...field}>
-              <FormControlLabel
-                value="0"
-                control={<Radio color='primary'/>}
-                label="Decrease"
-                className='Decrease'
-              />
-              <FormControlLabel 
-                value="1" 
-                control={<Radio color='primary'/>} 
-                label="Increase" 
-                className='Increase'
-              />
-            </RadioGroup>
-          )}
-
-        />
-        <label>Playlist Length (songs)</label>
-        <Controller
-          name="length"
-          control={control}
-          defaultValue={15}
-          render={({ field }) => (
-            <Slider
-            {...field}
-            onChange={(_, value) => {
-               field.onChange(value);
-            }}
-            valueLabelDisplay="auto"
-            max={40}
-            min={5}
-            marks={marks}
-            step={5}
-            color='secondary'
+   <div>
+      <AppBar>
+         <Toolbar>
+            <img
+               className='Image'
+               src='http://localhost:3000/SeekBeats.png'
             />
-          )}
-        />
-      <input type="submit" />
-    </form>
+            <Typography variant="h6" className='title'>
+               SeekBeats Playlist-Builder
+            </Typography>
+         </Toolbar>
+      </AppBar>
+      <form onSubmit={handleSubmit(onSubmit)}
+         className="form">
+         <label>Song Name</label>
+         <section>
+            <Controller
+            render={({ field }) => <Input {...field} />}
+            name="songName"
+            control={control}
+            defaultValue=""
+            className="materialUIInput"
+            />
+         </section>
+         <label>Artist Name</label>
+         <section>
+            <Controller
+            render={({ field }) => <Input {...field} />}
+            name="artistName"
+            control={control}
+            defaultValue=""
+            className="materialUIInput"
+            />
+         </section>
+         <label>Playlist Name</label>
+         <section>
+            <Controller
+            render={({ field }) => <Input {...field} />}
+            name="playlistName"
+            control={control}
+            defaultValue=""
+            className="materialUIInput"
+            />
+         </section>
+         <label>Tempo</label>
+         <Controller
+         name="tempo"
+         control={control}
+         render={({ field }) => (
+               <RadioGroup aria-label="tempo" {...field}>
+                  <div className='container'>
+                     <section>
+                        <FormControlLabel
+                           value="0"
+                           control={<Radio color='primary'/>}
+                           label="Decrease"
+                           className='tempoButtons'
+                        />
+                     </section>
+
+                     <section>
+                        <FormControlLabel 
+                           value="1" 
+                           control={<Radio color='primary'/>} 
+                           label="Increase" 
+                        />
+                  </section>
+               </div>
+               </RadioGroup>
+            )}
+
+         />
+         <label>Playlist Length (songs)</label>
+         <Controller
+            name="length"
+            control={control}
+            defaultValue={5}
+            render={({ field }) => (
+               <Slider
+               {...field}
+               onChange={(_, value) => {
+                  field.onChange(value);
+               }}
+               valueLabelDisplay="auto"
+               max={40}
+               min={5}
+               marks={marks}
+               step={5}
+               color='secondary'
+               />
+            )}
+         />
+         <section>
+            <Link to='/results' style={{ textDecoration: 'none'}}>
+               <button type="submit">Submit</button>
+            </Link>
+         </section>
+      </form>
+    </div>
   );
 };
 
