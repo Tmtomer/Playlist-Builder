@@ -55,7 +55,7 @@ const App = () => {
   const onSubmit = (data) => {
    axios
      .post("/getData", JSON.stringify(data))
-     .then(res => console.log(res))
+     .then(res => alert("Checkout SeekBeats official spotify account for your playlist!"))
      .catch(err => console.log(err));
  };
 
@@ -153,9 +153,9 @@ const App = () => {
             )}
          />
          <section>
-            <Link to='/results' style={{ textDecoration: 'none'}}>
-               <button type="submit">Submit</button>
-            </Link>
+            <button type="submit">
+               Submit
+            </button>
          </section>
       </form>
     </div>
