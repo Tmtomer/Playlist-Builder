@@ -3,8 +3,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Input, RadioGroup, Radio, FormControlLabel, Slider, Toolbar} from "@material-ui/core";
 import AppBar from '@material-ui/core/AppBar';
 import {Link} from 'react-router-dom';
-import Box from '@mui/material/Box';
-import Image from 'material-ui-image';
 
 import axios from "axios";
 import "./styles.css";
@@ -54,9 +52,9 @@ const App = () => {
 
   const onSubmit = (data) => {
    axios
-     .post("/getData", JSON.stringify(data))
-     .then(res => alert("Checkout SeekBeats official spotify account for your playlist!"))
-     .catch(err => console.log(err));
+     .post("http://45.33.6.199:5000/getData", JSON.stringify(data))
+     .then(res => alert("Checkout SeekBeats official spotify account for your playlist! URL:https://open.spotify.com/user/31dmf6wp2keemfuk7yklro2b3gyu"))
+     .catch(err => alert("Error occured"));
  };
 
   return (
@@ -65,7 +63,7 @@ const App = () => {
          <Toolbar>
             <img
                className='Image'
-               src='http://localhost:3000/SeekBeats.png'
+               src='http://45.33.6.199:3000/SeekBeats.png'
             />
             <Typography variant="h6" className='title'>
                SeekBeats Playlist-Builder
