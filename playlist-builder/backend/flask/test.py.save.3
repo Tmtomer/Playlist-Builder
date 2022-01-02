@@ -1,0 +1,30 @@
+Client ID: 2ef5f45a137b49e89b724055883ec19c
+Client Secret: ff6a4f72b6c64688a7c186a048303e5bfrom flask import Flask, request, json
+import spotipy
+from spotipy.oauth2 import SpotifyOAuth
+from spotipy.oauth2 import SpotifyClientCredentials
+import json
+
+CL_ID = "8fa911bbfcfb45dc9d9724dffd93af6b"
+CL_SECRET = "8722d33dfe564c858af7b140d5cfe0c1"
+
+sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CL_ID,
+                                            client_secret=CL_SECRET,
+                                            redirect_uri="http://localhost:8080",
+                                            scope="playlist-modify-private"))
+
+username = sp.current_user()["id"]
+app = Flask(__name__)
+
+data = []
+
+@app.route('/testing', methods=['GET', 'POST'])
+def sample():
+    return "tested" 
+
+@app.route('/getData', methods=['POST'])
+def dataFromUser():
+    data = request.get_data(as_text=True)
+    d = json.loads(data)
+    print(d["songName"])
+    return data
