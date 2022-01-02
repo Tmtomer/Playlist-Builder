@@ -5,13 +5,14 @@ from spotipy.oauth2 import SpotifyOAuth
 from spotipy.oauth2 import SpotifyClientCredentials
 import json
 
-CL_ID = "id"
-CL_SECRET = "secret"
+CL_ID = ""
+CL_SECRET = ""
 
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=CL_ID,
                                             client_secret=CL_SECRET,
-                                            redirect_uri="http://localhost:8080",
-                                            scope="playlist-modify-private"))
+                                            redirect_uri="http://localhost",
+                                            scope="playlist-modify-private",
+                                            open_browser=False))
 
 username = sp.current_user()["id"]
 
@@ -120,6 +121,7 @@ def main():
     d = json.loads(data)
 
     print(d)
+    #print(sp.me())
 
     # Playlist Builder:
     #playlist_info = getInfo("filename") # Read in a file to process the form from the frontend
